@@ -39,24 +39,18 @@ const query = `
     query {
       allFilms {
         films {
-            title
-            episodeID
-            openingCrawl
-          	characterConnection {
-              characters {
-                id
-                name
-                birthYear
-                eyeColor
-                hairColor
-                height
-                mass
-              }
+          title
+          episodeID
+          openingCrawl
+          characterConnection {
+            characters {
+              id
+              name
             }
+          }
         }
       }
     }
- 
 `;
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {

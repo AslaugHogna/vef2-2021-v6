@@ -3,7 +3,6 @@
 export interface ICharacter {
   id: string;
   allPeople: {people: ICharacter[]; pageInfo: IPaging};
-  edges?: {people: ICharacter[]};
   name?: string;
   birthYear?: string;
   eyeColor?: string;
@@ -15,7 +14,6 @@ export interface ICharacter {
 
 export interface IFilm {
   id: string;
-  
   characterConnection: {characters: ICharacter[]};
   films: string;
   title?: string;
@@ -34,6 +32,7 @@ export interface IFilmResponse {
   openingCrawl?: string;
   characters?: string;
 }
+
 export interface IPeopleResponse {
   allPeople: {people: ICharacter[]; pageInfo: IPaging};
   edges?: {people: ICharacter[]};
@@ -45,15 +44,11 @@ export interface IPeopleResponse {
   height?: number;
   mass?: number;
   hasNextPage: boolean;
-  endCursor: string;
-  
+  endCursor?: string;
 }
 
 export interface IPaging {
   hasNextPage: boolean;
-  endCursor: string;
-  
+  endCursor: string;  
 }
 
-// TODO hér ættum við að útbúa interface fyrir öll gögn sem við vinnum með (t.d. IFilm, IPaging)
-// og svör sem við fáum frá GraphQL endapunkti
