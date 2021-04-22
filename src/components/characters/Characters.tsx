@@ -6,7 +6,7 @@ import s from './Characters.module.scss';
 import { Button } from '../button/Button';
 import { ICharacter, IPaging } from '../../types';
 
-
+let hasNP = true;
 type Props = { 
   people: ICharacter[],
   pages: IPaging,
@@ -49,7 +49,8 @@ export function Characters({ people, pages }: Props): JSX.Element {
     let json;
     const url = '/api/characters';
     
-   if(pages.hasNextPage) {
+   if(hasNP) {
+     
      setLoading(true);
 
     try {
@@ -62,6 +63,7 @@ export function Characters({ people, pages }: Props): JSX.Element {
         characters.push(person)
         ));
         setNextPage(json.allPeople.pageInfo.endCursor);
+        hasNP = json.allPeople.pageInfo.hasNextPage;
     } catch (e) {
       setError(error);
       return;
@@ -83,7 +85,7 @@ export function Characters({ people, pages }: Props): JSX.Element {
 
       <p>{loading ? 'Sæki gögn...' : ''}</p>
 
-      <Button disabled={loading} onClick={fetchMore}>Fetch more</Button>
+      <Button disabled={loading || !hasNP} onClick={fetchMore}>Fetch more</Button>
     </section>
   );
 }
