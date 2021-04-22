@@ -81,6 +81,8 @@ export function Characters({ people, pages }: Props): JSX.Element {
         ))}
       </ul>
 
+      <p>{loading ? 'Sæki gögn...' : ''}</p>
+
       <Button disabled={loading} onClick={fetchMore}>Fetch more</Button>
     </section>
   );
