@@ -1,4 +1,34 @@
 
 .film {
-  
+  margin: auto;
+	margin-bottom: 2rem;
+}
+
+.crawl {
+	font-family: 'Courier New', Courier, monospace;
+	white-space: pre;
+}
+
+.characters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	line-height: 1rem;
+}
+
+.filmbody {
+	display: flex;
+	margin-bottom: 2rem;
+	}
+
+.charactersheading {
+		font-weight: bold;
+}
+
+.characters a {
+	white-space: nowrap;
+}
+
+.characterinfo {
+	margin-left: 2rem;
 }
