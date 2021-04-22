@@ -5,11 +5,10 @@ import { Film } from '../components/film/Film';
 
 import { Layout } from '../components/layout/Layout';
 import { fetchSwapi } from '../lib/swapi';
-import { IFilm } from '../types';
-import { IFilmResponse } from '../types';
+import { IFilm, IFilmResponse } from '../types';
 
 export type PageProps = {
-  films: Array<IFilm> | null;   
+  films: Array<IFilm> | null;
 };
 
 export default function PageComponent(
@@ -28,7 +27,7 @@ export default function PageComponent(
       </Head>
       <h1>Star Wars films</h1>
       {films.map((film, i) => (
-        <Film key={i} film={film}/>
+        <Film key={i} film={film} />
 
       ))}
     </Layout>
@@ -54,7 +53,7 @@ const query = `
 `;
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
-  const films = await fetchSwapi<IFilmResponse>(query); 
+  const films = await fetchSwapi<IFilmResponse>(query);
 
   return {
     props: {

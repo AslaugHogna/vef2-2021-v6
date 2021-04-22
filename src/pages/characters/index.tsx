@@ -7,7 +7,7 @@ import { fetchCharacters } from '../../lib/swapi';
 import { ICharacter, IPaging } from '../../types';
 
 export type PageProps = {
-  peopleResponse: Array<ICharacter> | null; 
+  peopleResponse: Array<ICharacter> | null;
   endCursor: string;
   pages: IPaging;
 };
@@ -35,7 +35,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
   const peopleResponse = await fetchCharacters();
   return {
     props: {
-      peopleResponse: peopleResponse?.allPeople?.people  ?? null,
+      peopleResponse: peopleResponse?.allPeople?.people ?? null,
       endCursor: peopleResponse?.allPeople?.pageInfo?.endCursor ?? null,
       pages: peopleResponse?.allPeople?.pageInfo ?? null,
     },

@@ -2,19 +2,25 @@
 
 export interface ICharacter {
   id: string;
-  allPeople: {people: ICharacter[]; pageInfo: IPaging};
+  allPeople: { people: ICharacter[]; pageInfo: IPaging };
   name?: string;
   birthYear?: string;
   eyeColor?: string;
   hairColor?: string
   height?: number;
   mass?: number;
-  person: {person: ICharacter; id: string; allPeople: {people: ICharacter[]; pageInfo: IPaging} };
+  person: {
+    person: ICharacter;
+    id: string;
+    allPeople: { people: ICharacter[];
+      pageInfo: IPaging
+    }
+  };
 }
 
 export interface IFilm {
   id: string;
-  characterConnection: {characters: ICharacter[]};
+  characterConnection: { characters: ICharacter[] };
   films: string;
   title?: string;
   episodeID?: number;
@@ -23,9 +29,9 @@ export interface IFilm {
 }
 
 export interface IFilmResponse {
-  allFilms?: {films: IFilm[]};
+  allFilms?: { films: IFilm[] };
   id: string;
-  characterConnection?: {characters: ICharacter[]};
+  characterConnection?: { characters: ICharacter[] };
   films?: string;
   title?: string;
   episodeID?: number;
@@ -34,8 +40,8 @@ export interface IFilmResponse {
 }
 
 export interface IPeopleResponse {
-  allPeople: {people: ICharacter[]; pageInfo: IPaging};
-  edges?: {people: ICharacter[]};
+  allPeople: { people: ICharacter[]; pageInfo: IPaging };
+  edges?: { people: ICharacter[] };
   people?: ICharacter;
   name?: string;
   birthYear?: string;
@@ -49,6 +55,5 @@ export interface IPeopleResponse {
 
 export interface IPaging {
   hasNextPage: boolean;
-  endCursor: string;  
+  endCursor: string;
 }
-

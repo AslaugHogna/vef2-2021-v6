@@ -7,26 +7,11 @@ import { Button } from '../button/Button';
 import { ICharacter, IPaging } from '../../types';
 
 let hasNP = true;
-type Props = { 
+type Props = {
   people: ICharacter[],
   pages: IPaging,
   endCursor: string
 };
-
-/**
- * Hjálpar týpa ef við erum að filtera burt hugsanleg null gildi:
- *
- * const items: T = itemsWithPossiblyNull
- *  .map((item) => {
- *    if (!item) {
- *      return null;
- *    }
- *    return item;
- *  })
- *  .filter((Boolean as unknown) as ExcludesFalse);
- * items verður Array<T> en ekki Array<T | null>
- */
-type ExcludesFalse = <T>(x: T | null | undefined | false) => x is T;
 
 export function Characters({ people, pages }: Props): JSX.Element {
   // TODO meðhöndla loading state, ekki þarf sérstaklega að villu state
@@ -39,38 +24,37 @@ export function Characters({ people, pages }: Props): JSX.Element {
 
   useEffect(() => {
     setCharacters(people);
-  });
+  }, [people]);
 
   useEffect(() => {
     setNextPage(pages.endCursor);
-  }, []);
-  
+  }, [pages.endCursor]);
+
   const fetchMore = async (): Promise<void> => {
     let json;
     const url = '/api/characters';
-    
-   if(hasNP) {
-     
-     setLoading(true);
 
-    try {
-      const result = await fetch(`${url}?after=${nextPage}`);
-      if (!result.ok) {
-        throw new Error('result not ok');
-      }
-      json = await result.json();
-      json.allPeople.people.map((person: ICharacter) => (
-        characters.push(person)
+    if (hasNP) {
+      setLoading(true);
+
+      try {
+        const result = await fetch(`${url}?after=${nextPage}`);
+        if (!result.ok) {
+          throw new Error('result not ok');
+        }
+        json = await result.json();
+        json.allPeople.people.map((person: ICharacter) => (
+          characters.push(person)
         ));
         setNextPage(json.allPeople.pageInfo.endCursor);
         hasNP = json.allPeople.pageInfo.hasNextPage;
-    } catch (e) {
-      setError(error);
-      return;
-    } finally {
-      setLoading(false); 
+      } catch (e) {
+        setError(error);
+        return;
+      } finally {
+        setLoading(false);
       }
-   }
+    }
   };
 
   return (

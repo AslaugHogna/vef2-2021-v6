@@ -40,7 +40,6 @@ export async function fetchSwapi<T>(
 // Gott að hafa sameiginlegt fall hér til að sækja fyrstu síðu á /pages/character/index.tsx og
 // næstu á /pages/api/character.ts
 export async function fetchCharacters(after = ''): Promise<IPeopleResponse> {
-
   const query = `
     query($after: String = "${after}") {
       

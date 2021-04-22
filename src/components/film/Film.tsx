@@ -18,13 +18,15 @@ export function Film({ film }: Props): JSX.Element {
         <div className={s.characterinfo}>
           <p className={s.charactersheading}>Characters</p>
           <ul className={s.characters}>
-            {film.characterConnection.characters.map(({ id, name }) =>
-              <Link key={id} href={`/characters/${id}`}>{name}</Link>,
-              )}
+            {
+            film.characterConnection.characters.map(
+              ({ id, name }) => <Link key={id} href={`/characters/${id}`}>{name}</Link>,
+            )
+}
           </ul>
         </div>
       </div>
-      <hr></hr>
+      <hr />
     </section>
   );
 }
