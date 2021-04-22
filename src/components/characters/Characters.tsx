@@ -67,7 +67,7 @@ export function Characters({ people, pages }: Props): JSX.Element {
       return;
     } finally {
       setLoading(false); 
-        }
+      }
    }
   };
 
